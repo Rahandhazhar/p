@@ -10,64 +10,64 @@ const storyEl = document.getElementById('story');
 let musicPlaying = false;
 
 // --- THEME TOGGLE ---
-function setTheme(theme) {
-  document.body.className = theme;
-  localStorage.setItem('theme', theme);
-  themeToggleBtn.textContent = theme === 'dark' ? '🌙' : '☀️';
-}
-
 function toggleTheme() {
-  const currentTheme = document.body.className || 'dark';
-  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-  setTheme(newTheme);
+  document.body.classList.toggle('dark');
+  document.body.classList.toggle('light');
+  const newTheme = document.body.classList.contains('dark') ? 'dark' : 'light';
+  localStorage.setItem('theme', newTheme);
+  themeToggleBtn.textContent = newTheme === 'dark' ? '🌙' : '☀️';
 }
 
 // --- MUSIC TOGGLE ---
-function setMusicPlaying(playing) {
-  musicPlaying = playing;
-  if (musicPlaying) {
-    musicElement.play();
-    musicToggleBtn.textContent = '🔊';
-  } else {
-    musicElement.pause();
-    musicToggleBtn.textContent = '🔇';
-  }
-}
-
 function toggleMusic() {
   if (!musicElement) return;
   if (musicElement.paused) {
-    setMusicPlaying(true);
+    musicElement.play();
+    musicToggleBtn.textContent = '🔊';
+    musicPlaying = true;
   } else {
-    setMusicPlaying(false);
+    musicElement.pause();
+    musicToggleBtn.textContent = '🔇';
+    musicPlaying = false;
   }
 }
 
 // --- STORY MESSAGE WITH FADE-IN ---
 function showMessage(text) {
-  // Add fade-in animation class to the paragraph
   storyEl.innerHTML = `<p class="fade-in">${text}</p>`;
+}
+
+// --- COLLAPSIBLE PANELS ---
+function initCollapsible() {
+  document.querySelectorAll('.collapsible').forEach(section => {
+    const header = section.querySelector('h2');
+    if (!header) return;
+    header.addEventListener('click', () => {
+      section.classList.toggle('collapsed');
+    });
+  });
 }
 
 // --- INITIALIZATION ---
 function initUI() {
-  // Set saved or default theme
+  // Theme
   const savedTheme = localStorage.getItem('theme') || 'dark';
-  setTheme(savedTheme);
+  document.body.classList.add(savedTheme);
+  themeToggleBtn.textContent = savedTheme === 'dark' ? '🌙' : '☀️';
+  themeToggleBtn.addEventListener('click', toggleTheme);
 
-  // Music setup
+  // Music
   if (musicElement) {
     musicElement.loop = true;
     musicElement.volume = 0.15;
-    setMusicPlaying(!musicElement.paused);
+    musicPlaying = !musicElement.paused;
+    musicToggleBtn.textContent = musicPlaying ? '🔊' : '🔇';
+    musicToggleBtn.addEventListener('click', toggleMusic);
   }
 
-  // Event listeners
-  themeToggleBtn.addEventListener('click', toggleTheme);
-  musicToggleBtn.addEventListener('click', toggleMusic);
+  // Collapsible inventory & skills
+  initCollapsible();
 }
 
 // Run on DOM ready
-document.addEventListener('DOMContentLoaded', () => {
-  initUI();
-});
+document.addEventListener('DOMContentLoaded', initUI);

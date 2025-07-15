@@ -300,3 +300,11 @@ body.dark, body.light {
     box-shadow: 0 0 40px var(--color-accent-light);
   }
 }
+/* === Collapsible panels for inventory and skills === */
+.collapsible > h2 {
+  cursor: pointer;
+}
+.collapsible.collapsed ul {
+  display: none;
+}
+
