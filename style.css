@@ -1,0 +1,302 @@
+/* === Root variables for themes === */
+:root {
+  --color-bg-dark: #121212;
+  --color-bg-light: #f0f0f0;
+  --color-text-dark: #eee;
+  --color-text-light: #222;
+  --color-accent: #5fc9f8;
+  --color-accent-dark: #4aa0d9;
+  --color-accent-light: #7dd0ff;
+  --color-error: #ff5555;
+  --color-success: #55ff55;
+  --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --transition-speed: 0.3s;
+}
+
+/* === Dark theme base === */
+body.dark {
+  background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+  color: var(--color-text-dark);
+  cursor: url('glowing-sword-cursor.png'), auto;
+  transition: background var(--transition-speed) ease, color var(--transition-speed) ease;
+}
+
+/* === Light theme base === */
+body.light {
+  background: linear-gradient(135deg, #fafafa, #e0e0e0);
+  color: var(--color-text-light);
+  cursor: url('glowing-sword-cursor-light.png'), auto;
+  transition: background var(--transition-speed) ease, color var(--transition-speed) ease;
+}
+
+/* === Container === */
+.container {
+  max-width: 900px;
+  margin: 1.5rem auto;
+  padding: 1rem 1.5rem;
+  background: rgba(0,0,0,0.5);
+  border-radius: 15px;
+  box-shadow: 0 0 20px var(--color-accent);
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: auto 1fr auto;
+  gap: 1rem 2rem;
+  min-height: 80vh;
+}
+
+/* === Header === */
+.header {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  user-select: none;
+}
+
+/* === Stats Section === */
+.stats {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 1rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  line-height: 1.4;
+  box-shadow: inset 0 0 5px var(--color-accent-light);
+  overflow-y: auto;
+  max-height: 250px;
+  color: var(--color-text-dark);
+}
+
+/* === Inventory Section === */
+.inventory {
+  background: rgba(0, 0, 0, 0.35);
+  padding: 1rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  box-shadow: inset 0 0 5px var(--color-accent-light);
+  overflow-y: auto;
+  max-height: 250px;
+  color: var(--color-text-dark);
+}
+.inventory h2 {
+  margin-top: 0;
+  font-weight: 600;
+  color: var(--color-accent);
+}
+.inventory ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin-top: 0.5rem;
+}
+.inventory li {
+  padding: 0.3rem 0.5rem;
+  border-bottom: 1px solid var(--color-accent-dark);
+  cursor: default;
+  transition: background 0.3s ease;
+}
+.inventory li:hover {
+  background: var(--color-accent-dark);
+  color: #fff;
+  border-radius: 5px;
+}
+
+/* === Skills Section === */
+.skills {
+  background: rgba(0, 0, 0, 0.35);
+  padding: 1rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  box-shadow: inset 0 0 5px var(--color-accent-light);
+  overflow-y: auto;
+  max-height: 250px;
+  color: var(--color-text-dark);
+}
+.skills h2 {
+  margin-top: 0;
+  font-weight: 600;
+  color: var(--color-accent);
+}
+.skills ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin-top: 0.5rem;
+}
+.skills li {
+  padding: 0.3rem 0.5rem;
+  border-bottom: 1px solid var(--color-accent-dark);
+  cursor: default;
+  transition: background 0.3s ease;
+}
+.skills li:hover {
+  background: var(--color-accent-dark);
+  color: #fff;
+  border-radius: 5px;
+}
+
+/* === Story Box === */
+.story-box {
+  grid-column: 2;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  padding: 1.5rem;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: var(--color-text-dark);
+  overflow-y: auto;
+  max-height: 70vh;
+  box-shadow: 0 0 15px var(--color-accent-light);
+  animation: fadeIn 0.7s ease forwards;
+  position: relative;
+}
+
+/* === Choices Section === */
+.choices {
+  grid-column: 2;
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  justify-content: flex-start;
+}
+.choice-button {
+  background: var(--color-accent);
+  border: none;
+  color: #111;
+  font-weight: 600;
+  padding: 0.5rem 1.2rem;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 0 8px var(--color-accent-light);
+  transition: background 0.25s ease, transform 0.15s ease;
+  user-select: none;
+}
+.choice-button:hover,
+.choice-button:focus {
+  background: var(--color-accent-light);
+  outline: none;
+  transform: scale(1.07);
+}
+.choice-button:active {
+  transform: scale(0.95);
+}
+
+/* === Footer Buttons === */
+.footer-buttons {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+.control-btn {
+  background: var(--color-accent);
+  border: none;
+  color: #111;
+  font-weight: 700;
+  padding: 0.5rem 1.5rem;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 0 12px var(--color-accent-light);
+  transition: background 0.25s ease, transform 0.15s ease;
+  user-select: none;
+}
+.control-btn:hover,
+.control-btn:focus {
+  background: var(--color-accent-light);
+  outline: none;
+  transform: scale(1.05);
+}
+.control-btn:active {
+  transform: scale(0.9);
+}
+
+/* === Music and Theme Toggle Buttons === */
+.theme-toggle, .music-toggle {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--color-accent);
+  transition: color 0.3s ease;
+  user-select: none;
+}
+.theme-toggle:hover, .music-toggle:hover {
+  color: var(--color-accent-light);
+}
+
+/* === Custom Cursor: Glowing Sword === */
+body.dark, body.light {
+  cursor: url('glowing-sword-cursor.png'), auto;
+}
+
+/* === Scrollbar Styling === */
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.15);
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-accent);
+  border-radius: 6px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+  transition: background 0.3s ease;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-light);
+}
+
+/* === Responsive adjustments === */
+@media (max-width: 768px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+  }
+  .story-box, .choices {
+    grid-column: unset;
+  }
+  .stats, .inventory, .skills {
+    max-height: 150px;
+  }
+  .footer-buttons {
+    flex-wrap: wrap;
+  }
+}
+
+/* === Animations === */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* === Placeholder for Map container === */
+.map-container {
+  grid-column: 1 / -1;
+  height: 200px;
+  margin: 1rem 0;
+  border-radius: 15px;
+  background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
+  box-shadow: 0 0 20px var(--color-accent);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-accent-light);
+  font-size: 1.25rem;
+  user-select: none;
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px var(--color-accent);
+  }
+  50% {
+    box-shadow: 0 0 40px var(--color-accent-light);
+  }
+}
